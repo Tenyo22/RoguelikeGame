@@ -1,16 +1,17 @@
 import { useEffect, useRef, useState } from "react"
-import InputManager from "./InputManager.js"
+import InputManager from "./models/InputManager.js"
+import Player from "./models/Player.js"
 
 const ReactRogue = ({ width, height, tilesize }) => {
     const canvasRef = useRef(null)
+    const [player, setPlayer] = useState(new Player(1, 2, tilesize))
     let inputManager = new InputManager()
-    const [player, setPlayer] = useState({ x: 64, y: 128 })
 
     const handleInput = (action, data) => {
         console.log(`handle action: ${action}:${JSON.stringify(data)}`)
-        let newPlayer = { ...player }
-        newPlayer.x += data.x * tilesize
-        newPlayer.y += data.y * tilesize
+        let newPlayer = new Player()
+        Object.assign(newPlayer, player)
+        newPlayer.move(data.x, data.y)
         setPlayer(newPlayer)
     }
 
@@ -28,8 +29,7 @@ const ReactRogue = ({ width, height, tilesize }) => {
         console.log('Draw to canvas')
         const ctx = canvasRef.current.getContext('2d')
         ctx.clearRect(0, 0, width * tilesize, height * tilesize)
-        ctx.fillStyle = '#000'
-        ctx.fillRect(player.x, player.y, 16, 16)
+        player.draw(ctx)
     })
 
     return (
