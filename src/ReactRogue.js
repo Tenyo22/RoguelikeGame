@@ -23,7 +23,7 @@ const ReactRogue = ({ width, height, tilesize }) => {
         Object.assign(newWorld, world)
         newWorld.createCellularMap()
         newWorld.moveToSpace(world.player)
-        
+
         let spawner = new Spawner(newWorld)
         spawner.spawnLoot(10)
         setWorld(newWorld)
@@ -47,12 +47,20 @@ const ReactRogue = ({ width, height, tilesize }) => {
     })
 
     return (
-        <canvas
-            ref={canvasRef}
-            width={width * tilesize}
-            height={height * tilesize}
-            style={{ border: '1px solid black', background: 'dimgray' }}>
-        </canvas>
+        <>
+            <canvas
+                ref={canvasRef}
+                width={width * tilesize}
+                height={height * tilesize}
+                style={{ border: '1px solid black', background: 'dimgray' }}>
+            </canvas>
+            <ul>
+                {world.player.inventory.map((item, index) => (
+                    console.log(item),
+                    <li key={index}>{item.attributes.name}</li>
+                ))}
+            </ul>
+        </>
     )
 }
 

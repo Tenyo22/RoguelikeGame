@@ -32,6 +32,10 @@ class World {
         this.entities.push(entity)
     }
 
+    remove(entity) {
+        this.entities = this.entities.filter(e => e !== entity)
+    }
+
     get player() {
         return this.entities[0]
     }
