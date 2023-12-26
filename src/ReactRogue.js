@@ -3,11 +3,11 @@ import InputManager from "./models/InputManager.js"
 import World from "./models/World.js"
 import Spawner from "./models/Spawner.js"
 
-const ReactRogue = ({ width, height, tilesize }) => {
+const ReactRogue = ({ width, height, tileSize }) => {
     const canvasRef = useRef(null)
-    // const [player, setPlayer] = useState(new Player(1, 2, tilesize))
-    const [world, setWorld] = useState(new World(width, height, tilesize))
-    let inputManager = new InputManager()
+    // const [player, setPlayer] = useState(new Player(1, 2, tileSize))
+    const [world, setWorld] = useState(new World(width, height, tileSize))
+    const inputManager = new InputManager()
 
     const handleInput = (action, data) => {
         console.log(`handle action: ${action}:${JSON.stringify(data)}`)
@@ -19,7 +19,7 @@ const ReactRogue = ({ width, height, tilesize }) => {
 
     useEffect(() => {
         console.log('Create Map!')
-        let newWorld = new World()
+        const newWorld = new World()
         Object.assign(newWorld, world)
         newWorld.createCellularMap()
         newWorld.moveToSpace(world.player)
@@ -43,7 +43,7 @@ const ReactRogue = ({ width, height, tilesize }) => {
     useEffect(() => {
         console.log('Draw to canvas')
         const ctx = canvasRef.current.getContext('2d')
-        ctx.clearRect(0, 0, width * tilesize, height * tilesize)
+        ctx.clearRect(0, 0, width * tileSize, height * tileSize)
         world.draw(ctx)
     })
 
@@ -51,8 +51,8 @@ const ReactRogue = ({ width, height, tilesize }) => {
         <>
             <canvas
                 ref={canvasRef}
-                width={width * tilesize}
-                height={height * tilesize}
+                width={width * tileSize}
+                height={height * tileSize}
                 style={{ border: '1px solid black', background: 'dimgray' }}>
             </canvas>
             <ul>

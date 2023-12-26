@@ -18,7 +18,7 @@ class World {
     createCellularMap() {
         var map = new Map.Cellular(this.width, this.height, { connected: true })
         map.randomize(0.5)
-        var userCallBack = (x, y, value) => {
+        const userCallBack = (x, y, value) => {
             if (x === 0 || y === 0 || x === this.width - 1 || y === this.height - 1) {
                 this.worldmap[x][y] = 1 // Create walls around edges of map
                 return
@@ -44,7 +44,7 @@ class World {
     moveToSpace(entity) {
         for (let x = entity.x; x < this.width; x++) {
             for (let y = entity.y; y < this.height; y++) {
-                if (this.worldmap[x][y] === 0) {
+                if (this.worldmap[x][y] === 0 && !this.getEntityAtLocation(x, y)) {
                     entity.x = x
                     entity.y = y
                     return
@@ -96,7 +96,7 @@ class World {
 
     addToHistory(history) {
         this.history.push(history)
-        if(this.history.length > 6) this.history.shift()
+        if (this.history.length > 6) this.history.shift()
     }
 }
 
