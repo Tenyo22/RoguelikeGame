@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import InputManager from "./models/InputManager.js"
 import World from "./models/World.js"
-import Spawner from "./models/Spawner.js"
+import Spawner, { lootTable, monsterTable } from "./models/Spawner.js"
 
 const ReactRogue = ({ width, height, tileSize }) => {
     const canvasRef = useRef(null)
@@ -50,22 +50,63 @@ const ReactRogue = ({ width, height, tileSize }) => {
 
     return (
         <>
-            <canvas
-                ref={canvasRef}
-                width={width * tileSize}
-                height={height * tileSize}
-                style={{ border: '1px solid black', background: 'dimgray' }}>
-            </canvas>
-            <ul>
-                {world.player.inventory.map((item, index) => (
-                    <li key={index}>{item.attributes.name}</li>
-                ))}
-            </ul>
-            <ul>
-                {world.history.map((item, index) => (
-                    <li key={index}>{item}</li>
-                ))}
-            </ul>
+            <section style={{ display: 'flex' }}>
+                <canvas
+                    ref={canvasRef}
+                    width={width * tileSize}
+                    height={height * tileSize}
+                    style={{ border: '1px solid black', background: 'dimgray' }}>
+                </canvas>
+
+                <section style={{ marginLeft: '10px', width: '800px', border: '1px solid black' }}>
+                    {/* Player inventory */}
+                    <div style={{ margin: '10px', border: '1px solid black', background: '#E0E0E0' }}>
+                        <h2 style={{ textAlign: 'center' }}>Player Inventory</h2>
+                        <ul style={{ display: 'flex' }}>
+                            {world.player.inventory.map((item, index) => (
+                                <li key={index} style={{ marginBottom: '10px', width: '48%' }}>{item.attributes.name}</li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    {/* Legend Map*/}
+                    <div style={{ margin: '10px', textAlign: 'center', border: '1px solid black', background: '#455A64' }}>
+                        <h2>Legend</h2>
+                        <div style={{ display: 'flex', justifyContent: 'space-around' }}>
+                            <ul style={{ listStyleType: 'none' }}>
+                                <li style={{ color: 'white', marginBottom: '10px' }}><strong>@</strong> - Player (Health: {world.player.attributes.health})</li>
+                                <li style={{ color: 'white' }}><strong>{'>'}</strong> - Stairs</li>
+                            </ul>
+
+                            <ul style={{ listStyleType: 'none' }}>
+                                {lootTable.map((item, index) => (
+                                    <li key={index} style={{ marginBottom: '10px', color: item.color }}>
+                                        <strong>{item.ascii}</strong> - {item.name}
+                                    </li>
+                                ))}
+                            </ul>
+
+                            <ul style={{ listStyleType: 'none' }}>
+                                {monsterTable.map((item, index) => (
+                                    <li key={index} style={{ marginBottom: '10px', color: item.color }}>
+                                        <strong>{item.ascii}</strong> - {item.name}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
+
+                    {/* History console */}
+                    <div style={{ margin: '10px', border: '1px solid black' }}>
+                        <h2 style={{ textAlign: 'center' }}>History</h2>
+                        <ul>
+                            {world.history.map((item, index) => (
+                                <li key={index}>{item}</li>
+                            ))}
+                        </ul>
+                    </div>
+                </section>
+            </section >
         </>
     )
 }
