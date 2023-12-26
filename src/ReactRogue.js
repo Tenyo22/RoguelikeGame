@@ -26,6 +26,7 @@ const ReactRogue = ({ width, height, tilesize }) => {
 
         let spawner = new Spawner(newWorld)
         spawner.spawnLoot(10)
+        spawner.spawnMonsters(6)
         setWorld(newWorld)
     }, [])
 
@@ -56,8 +57,12 @@ const ReactRogue = ({ width, height, tilesize }) => {
             </canvas>
             <ul>
                 {world.player.inventory.map((item, index) => (
-                    console.log(item),
                     <li key={index}>{item.attributes.name}</li>
+                ))}
+            </ul>
+            <ul>
+                {world.history.map((item, index) => (
+                    <li key={index}>{item}</li>
                 ))}
             </ul>
         </>

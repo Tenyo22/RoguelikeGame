@@ -7,6 +7,7 @@ class World {
         this.height = height
         this.tileSize = tileSize
         this.entities = [new Player(0, 0, 16)]
+        this.history = ['You entered the dungeon', '---']
 
         this.worldmap = new Array(this.width)
         for (let x = 0; x < this.width; x++) {
@@ -91,6 +92,10 @@ class World {
     drawWall(context, x, y) {
         context.fillStyle = '#000'
         context.fillRect(x * this.tileSize, y * this.tileSize, this.tileSize, this.tileSize)
+    }
+
+    addToHistory(history) {
+        this.history.push(history)
     }
 }
 
