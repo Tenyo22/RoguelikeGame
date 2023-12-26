@@ -1,5 +1,6 @@
 import Loot from "./Loot.js"
 import Monster from "./Monster.js"
+import Stairs from "./Stairs.js"
 
 const lootTable = [
     { name: 'Long Sword', color: 'darkgrey', ascii: '/', offset: { x: 6, y: 3 } },
@@ -14,6 +15,8 @@ const monsterTable = [
     { name: 'Slime', color: 'darkgreen', ascii: 'S', offset: { x: 3, y: 2 }, health: 2 },
     { name: 'Dragon', color: 'red', ascii: 'D', offset: { x: 2, y: 3 }, health: 10 },
 ]
+
+const getRandomInt = (max) => Math.floor(Math.random() * Math.floor(max))
 
 class Spawner {
     constructor(world) {
@@ -48,10 +51,16 @@ class Spawner {
             )
         })
     }
-}
 
-function getRandomInt(max) {
-    return Math.floor(Math.random() * Math.floor(max))
+    spawnStairs() {
+        let stairs = new Stairs(
+            getRandomInt(this.world.width - 1),
+            getRandomInt(this.world.height - 1),
+            this.world.tileSize
+        );
+        this.world.add(stairs);
+        this.world.moveToSpace(stairs);
+    }
 }
 
 export default Spawner
