@@ -63,6 +63,7 @@ class Player extends Entity {
             if (this.longSwordUses <= 0) {
                 const swordIndex = this.inventory.findIndex(item => item.attributes.name === 'Long Sword')
                 if (swordIndex !== -1) {
+                    this.longSwordUses = 3
                     this.inventory.splice(swordIndex, 1)
                     world.addToHistory(`Your Long has Sword has broken!`)
                 }
