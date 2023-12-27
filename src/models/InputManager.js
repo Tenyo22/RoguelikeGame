@@ -28,6 +28,9 @@ class InputManager {
             case 40:
                 this.broadcast('move', { x: 0, y: 1 })
                 break
+            case 32:
+                this.broadcast('heal')
+                break
             default:
                 break
         }
