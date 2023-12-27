@@ -2,6 +2,9 @@ import Entity from "./Entity.js"
 
 class Player extends Entity {
     inventory = []
+    damage = 1
+    longSwordUses = 3
+
     attributes = {
         name: 'Player',
         ascii: '@',
@@ -45,6 +48,27 @@ class Player extends Entity {
                 } else world.addToHistory(`You are already at fully health. No need to use a health potion!`)
             } else world.addToHistory(`You don't have any more Health Potions`)
         } else world.addToHistory(`You don't have any Health Potion`)
+    }
+
+    // Calcular el daño del jugador, considerando el arma equipada
+    calculateDamage(world) {
+        let totalDamage = this.damage
+        const weapon = this.inventory.find(item => item.attributes.name === 'Long Sword')
+        if (weapon) {
+            if (this.longSwordUses > 0) {
+                totalDamage++
+                this.longSwordUses--
+            }
+            weapon.attributes.uses--
+            if (this.longSwordUses <= 0) {
+                const swordIndex = this.inventory.findIndex(item => item.attributes.name === 'Long Sword')
+                if (swordIndex !== -1) {
+                    this.inventory.splice(swordIndex, 1)
+                    world.addToHistory(`Your Long has Sword has broken!`)
+                }
+            }
+        }
+        return totalDamage
     }
 
     copyPlayer() {
