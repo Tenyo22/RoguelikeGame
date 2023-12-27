@@ -3,10 +3,10 @@ import Monster from "./Monster.js"
 import Stairs from "./Stairs.js"
 
 export const lootTable = [
-    { name: 'Long Sword', color: 'darkgrey', ascii: '/', offset: { x: 6, y: 3 } },
-    { name: 'Health Potion', color: 'red', ascii: '!', offset: { x: 6, y: 3 } },
-    { name: 'Gold coin', color: 'yellow', ascii: '$', offset: { x: 3, y: 3 } },
-    { name: 'Light Armor', color: 'lightgrey', ascii: '#', offset: { x: 4, y: 3 } },
+    { name: 'Long Sword', color: 'darkgrey', ascii: '/', offset: { x: 6, y: 3 }, quantity: 1 },
+    { name: 'Health Potion', color: 'red', ascii: '!', offset: { x: 6, y: 3 }, quantity: 1 },
+    { name: 'Gold coin', color: 'yellow', ascii: '$', offset: { x: 3, y: 3 }, quantity: 1 },
+    { name: 'Light Armor', color: 'lightgrey', ascii: '#', offset: { x: 4, y: 3 }, quantity: 1 },
 ]
 
 export const monsterTable = [

@@ -1,6 +1,6 @@
 import Entity from "./Entity.js"
 
-class Player extends Entity{
+class Player extends Entity {
     inventory = []
     attributes = {
         name: 'Player',
@@ -9,13 +9,18 @@ class Player extends Entity{
     }
 
     move(dx, dy) {
-        if(this.attributes.health <= 0 ) return
+        if (this.attributes.health <= 0) return
         this.x += dx
         this.y += dy
     }
 
     add(item) {
-        this.inventory.push(item)
+        const existItem = this.inventory.find(i => i.attributes.name === item.attributes.name)
+
+        if (existItem && item.attributes.name === 'Long Sword') return
+
+        if (existItem) existItem.attributes.quantity += item.attributes.quantity || 1
+        else this.inventory.push(item)
     }
 
     copyPlayer() {

@@ -67,7 +67,6 @@ class World {
 
         let entity = this.getEntityAtLocation(tempPlayer.x, tempPlayer.y)
         if (entity) {
-            console.log(entity)
             entity.action('bump', this)
             return
         }

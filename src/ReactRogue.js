@@ -10,7 +10,7 @@ const ReactRogue = ({ width, height, tileSize }) => {
     const inputManager = new InputManager()
 
     const handleInput = (action, data) => {
-        console.log(`handle action: ${action}:${JSON.stringify(data)}`)
+        // console.log(`handle action: ${action}:${JSON.stringify(data)}`)
         let newWorld = new World()
         Object.assign(newWorld, world)
         newWorld.movePlayer(data.x, data.y)
@@ -62,9 +62,11 @@ const ReactRogue = ({ width, height, tileSize }) => {
                     {/* Player inventory */}
                     <div style={{ margin: '10px', border: '1px solid black', background: '#E0E0E0' }}>
                         <h2 style={{ textAlign: 'center' }}>Player Inventory</h2>
-                        <ul style={{ display: 'flex' }}>
+                        <ul style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'end'}}>
                             {world.player.inventory.map((item, index) => (
-                                <li key={index} style={{ marginBottom: '10px', width: '48%' }}>{item.attributes.name}</li>
+                                <li key={index} style={{ marginBottom: '10px', width: '48%' }}>
+                                    {item.attributes.name} {item.attributes.quantity > 1 ? `x${item.attributes.quantity}` : ''}
+                                </li>
                             ))}
                         </ul>
                     </div>
