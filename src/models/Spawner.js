@@ -3,17 +3,17 @@ import Monster from "./Monster.js"
 import Stairs from "./Stairs.js"
 
 export const lootTable = [
-    { name: 'Long Sword', color: 'darkgrey', ascii: '/', offset: { x: 6, y: 3 }, quantity: 1 },
-    { name: 'Health Potion', color: 'red', ascii: '!', offset: { x: 6, y: 3 }, quantity: 1 },
-    { name: 'Gold coin', color: 'yellow', ascii: '$', offset: { x: 3, y: 3 }, quantity: 1 },
-    { name: 'Light Armor', color: 'lightgrey', ascii: '#', offset: { x: 4, y: 3 }, quantity: 1 },
+    { name: 'Long Sword', color: '#FF5252', ascii: '&', offset: { x: 6, y: 3 }, quantity: 1 },
+    { name: 'Health Potion', color: '#FF3D00', ascii: '?', offset: { x: 6, y: 3 }, quantity: 1 },
+    { name: 'Gold coin', color: '#EEFF41', ascii: '$', offset: { x: 3, y: 3 }, quantity: 1 },
+    { name: 'Light Armor', color: '#FFAB40', ascii: '#', offset: { x: 4, y: 3 }, quantity: 1 },
 ]
 
 export const monsterTable = [
-    { name: 'Ogre', color: 'lightgrey', ascii: 'O', offset: { x: 2, y: 2 }, health: 6 },
-    { name: 'Kobold', color: 'green', ascii: 'k', offset: { x: 4, y: 3 }, health: 3 },
-    { name: 'Slime', color: 'darkgreen', ascii: 'S', offset: { x: 3, y: 2 }, health: 2 },
-    { name: 'Dragon', color: 'red', ascii: 'D', offset: { x: 2, y: 3 }, health: 10 },
+    { name: 'Ogre', color: '#00E676', ascii: 'O', offset: { x: 2, y: 2 }, health: 6 },
+    { name: 'Kobold', color: '#76FF03', ascii: 'k', offset: { x: 4, y: 3 }, health: 3 },
+    { name: 'Slime', color: '#1DE9B6', ascii: 'S', offset: { x: 3, y: 2 }, health: 2 },
+    { name: 'Dragon', color: '#FF3D00', ascii: 'D', offset: { x: 2, y: 3 }, health: 10 },
 ]
 
 const getRandomInt = (max) => Math.floor(Math.random() * Math.floor(max))
